@@ -3,6 +3,11 @@ using System.Data;
 
 namespace MyProgram
 {
+    public struct Posistion
+    {
+        public Int32 x;
+        public Int32 y;
+    }
     public class MyProgram
     {
         private static void Print2DArray<T>(T[,] array2D)
@@ -66,7 +71,9 @@ namespace MyProgram
             Print2DArray<Int32>(array2D);
 
             // Find Max Value
+            Posistion max_pos = new Posistion();
             Int32 max_value = array2D[0, 0];
+
             for (int col_index = 0; col_index < col_size; col_index++)
             {
                 for (int row_index = 0; row_index < row_size; row_index++)
@@ -74,11 +81,13 @@ namespace MyProgram
                     if (array2D[col_index, row_index] > max_value)
                     {
                         max_value = array2D[col_index, row_index];
+                        max_pos.x = col_index;
+                        max_pos.y = row_index;
                     }
                 }
             }
 
-            Console.WriteLine($"Max Value: {max_value}");
+            Console.WriteLine($"Max Value: {max_value} at [{max_pos.x},{max_pos.y}]");
         }
     }
 }
